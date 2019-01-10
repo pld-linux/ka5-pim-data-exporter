@@ -83,6 +83,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libpimsettingexporterprivate.so.5.*.*
 %{_desktopdir}/org.kde.pimsettingexporter.desktop
 %{_datadir}/config.kcfg/pimsettingexporterglobalconfig.kcfg
-%{_datadir}/kconf_update/pimsettingexporter-15.08-kickoff.sh
+%attr(755,root,root) %{_datadir}/kconf_update/pimsettingexporter-15.08-kickoff.sh
 %{_datadir}/kconf_update/pimsettingexporter.upd
 %{_datadir}/metainfo/org.kde.pimsettingexporter.appdata.xml
