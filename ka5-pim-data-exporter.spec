@@ -1,14 +1,14 @@
-%define		kdeappsver	18.12.0
+%define		kdeappsver	18.12.1
 %define		qtver		5.9.0
 %define		kaname		pim-data-exporter
 Summary:	pim-data-exporter
 Name:		ka5-%{kaname}
-Version:	18.12.0
+Version:	18.12.1
 Release:	1
 License:	GPL v2+/LGPL v2.1+
 Group:		X11/Applications
 Source0:	http://download.kde.org/stable/applications/%{kdeappsver}/src/%{kaname}-%{version}.tar.xz
-# Source0-md5:	8c4963ed326c37815f1c4c5754fc837a
+# Source0-md5:	741bbac4901d47459a0da40ae3d38c56
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Gui-devel >= 5.11.1
@@ -16,15 +16,15 @@ BuildRequires:	Qt5Test-devel
 BuildRequires:	Qt5Widgets-devel
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gettext-devel
-BuildRequires:	ka5-akonadi-devel >= 18.12.0
-BuildRequires:	ka5-kcontacts-devel >= 18.12.0
-BuildRequires:	ka5-kidentitymanagement-devel >= 18.12.0
-BuildRequires:	ka5-kmailtransport-devel >= 18.12.0
-BuildRequires:	ka5-kmime-devel >= 18.12.0
-BuildRequires:	ka5-kpimtextedit-devel >= 18.12.0
-BuildRequires:	ka5-libkdepim-devel >= 18.12.0
-BuildRequires:	ka5-mailcommon-devel >= 18.12.0
-BuildRequires:	ka5-pimcommon-devel >= 18.12.0
+BuildRequires:	ka5-akonadi-devel >= %{kdeappsver}
+BuildRequires:	ka5-kcontacts-devel >= %{kdeappsver}
+BuildRequires:	ka5-kidentitymanagement-devel >= %{kdeappsver}
+BuildRequires:	ka5-kmailtransport-devel >= %{kdeappsver}
+BuildRequires:	ka5-kmime-devel >= %{kdeappsver}
+BuildRequires:	ka5-kpimtextedit-devel >= %{kdeappsver}
+BuildRequires:	ka5-libkdepim-devel >= %{kdeappsver}
+BuildRequires:	ka5-mailcommon-devel >= %{kdeappsver}
+BuildRequires:	ka5-pimcommon-devel >= %{kdeappsver}
 BuildRequires:	kf5-extra-cmake-modules >= 5.51.0
 BuildRequires:	kf5-karchive-devel >= 5.51.0
 BuildRequires:	kf5-kconfig-devel >= 5.51.0
@@ -38,6 +38,7 @@ BuildRequires:	kf5-kitemviews-devel >= 5.51.0
 BuildRequires:	kf5-knotifications-devel >= 5.51.0
 BuildRequires:	kf5-kwidgetsaddons-devel >= 5.51.0
 BuildRequires:	kf5-kxmlgui-devel >= 5.51.0
+BuildRequires:	ninja
 BuildRequires:	qt5-build >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	shared-mime-info
@@ -56,14 +57,14 @@ backup and archival.
 install -d build
 cd build
 %cmake \
+	-G Ninja \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	..
-%{__make}
+%ninja_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} -C build install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang %{kaname} --all-name --with-kde
 
