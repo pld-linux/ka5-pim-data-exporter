@@ -51,6 +51,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 This package contains utlities needed by KDE PIM to export data for
 backup and archival.
 
+%description -l pl.UTF-8
+Ten pakiet zawiera programy użytkowe potrzebne KDE PIM do wykonywania
+kopii zapasowych.
+
 %prep
 %setup -q -n %{kaname}-%{version}
 
